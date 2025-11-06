@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using UnityEngine;
 
 namespace GameOffJam.Player
@@ -26,20 +25,28 @@ namespace GameOffJam.Player
         [Header("Rotation")]
 
         [SerializeField] float moveRotationSpeed = 360f;
+        [SerializeField] float smoothTime = 0.05f;
 
         [Space(2)]
 
         [Header("Gravity")]
 
         [SerializeField] float maxGravitySpeed = -12.0f;
+        [SerializeField] float gravityMultiplier = 2.0f;
 
         #endregion
 
         #region Private Variables
 
         float _currentSpeed;
+        float _velocity;
+        
+        // Alternative method to movement
 
-        Vector3 _velocity;
+        Vector3 _forward;
+        Vector3 _right;
+        
+        Vector3 _direction;
 
         // Inputs
 
@@ -50,38 +57,88 @@ namespace GameOffJam.Player
 
         #region References
 
-        CharacterController characterController;
+        CharacterController _characterController;
 
         #endregion
 
         private void Awake()
         {
-            characterController = GetComponent<CharacterController>();
+            _characterController = GetComponent<CharacterController>();
+        }
+
+        private void Start()
+        {
+            SetupForwardAndRight();
         }
 
         private void Update()
         {
-            // ----- Gravity Functions -----
-
-
             // ----- Direction Functions -----
 
             ProcessLookDirection();
+            
+            // ----- Gravity Functions -----
+        
+            ProcessGravity();
 
             // ----- General Movement Functions -----
 
             CalculateSpeed();
             ProcessMovement();
+            //AlternativeProcessMovement();
 
             
 
 
         }
 
+        #region Alternative Functions
+
+        private void SetupForwardAndRight()
+        {
+            if (Camera.main != null) _forward = Camera.main.transform.forward;
+            _forward.y = 0;
+            _forward = Vector3.Normalize(_forward);
+            _right = Quaternion.Euler(0, 90, 0) * _forward;
+            
+        }
+
+        private void AlternativeProcessMovement()
+        {
+            Vector3 rightMovement = _right * (_currentSpeed * Time.deltaTime * _movementInput.x);
+            Vector3 upMovement = _forward * (_currentSpeed * Time.deltaTime * _movementInput.z);
+            
+            Vector3 forwardMovement = Vector3.Normalize(rightMovement + upMovement);
+            transform.forward += Vector3.RotateTowards(transform.forward, forwardMovement, 360f , moveRotationSpeed * Time.deltaTime);
+            _characterController.Move((rightMovement + upMovement) + _direction);
+        }
+
+        #endregion
+        
+
         #region Gravity Functions
 
         private void ProcessGravity()
-        { 
+        {
+            
+            
+            if (_characterController.isGrounded && _velocity < 0.0f)
+            {
+                _velocity = -1f * Time.deltaTime;
+                
+                Debug.Log("Character is Grounded: " + _characterController.isGrounded);
+                
+            }
+
+            else
+            {
+                _velocity += maxGravitySpeed * gravityMultiplier * Time.deltaTime;
+                
+                Debug.Log("Character is not grounded: " + _characterController.isGrounded);
+            }
+
+            _direction.y = _velocity;
+            //_movementInput.y = _velocity;
             
         }
 
@@ -106,40 +163,46 @@ namespace GameOffJam.Player
 
         private void ProcessMovement()
         {
-            Vector3 moveDirection = transform.forward * _currentSpeed * _movementInput.magnitude * Time.deltaTime;
+            // _direction.x = _movementInput.x;
+            // _direction.z = _movementInput.z;
+            //_direction += new Vector3(_movementInput.x, 0.0f, _movementInput.z);
+            Vector3 moveDirection = transform.forward * (_currentSpeed * _movementInput.magnitude * Time.deltaTime);
+            moveDirection.y = _velocity;
             Debug.Log(moveDirection);
-            characterController.Move(moveDirection);
+            _characterController.Move(moveDirection);
         }
 
         private void ProcessLookDirection()
         {
-            if (_movementInput == Vector3.zero)
-            {
-                playerModelPivot.transform.position = characterController.transform.position;
-                return;
-            }
+            // if (_movementInput == Vector3.zero)
+            // {
+            //     playerModelPivot.transform.position = _characterController.transform.position;
+            //     return;
+            // }
 
+            if (_movementInput == Vector3.zero)
+                return;
+            
+            
             Matrix4x4 isometricMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
             Vector3 multipliedMatrix = isometricMatrix.MultiplyPoint3x4(_movementInput);
-
-            //Quaternion rotation = Quaternion.LookRotation(multipliedMatrix, Vector3.up);
-            //transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, baseMoveRotationSpeed * Time.deltaTime);
 
             Vector3 relative = (transform.position + multipliedMatrix) - transform.position;
             Quaternion rot = Quaternion.LookRotation(relative, Vector3.up);
 
-            //transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, baseMoveRotationSpeed * Time.deltaTime);
+            
 
 
 
-            playerModelPivot.transform.position = characterController.transform.position;
+            //playerModelPivot.transform.position = characterController.transform.position;
             transform.rotation = rot;
-            playerModelPivot.transform.rotation = Quaternion.RotateTowards(playerModelPivot.transform.rotation, rot, moveRotationSpeed * Time.deltaTime);
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, moveRotationSpeed * Time.deltaTime);
+            //layerModelPivot.transform.rotation = Quaternion.RotateTowards(playerModelPivot.transform.rotation, rot, moveRotationSpeed * Time.deltaTime);
         }
 
         #endregion
 
-
+        
         #region Public Functions
 
         // Movement

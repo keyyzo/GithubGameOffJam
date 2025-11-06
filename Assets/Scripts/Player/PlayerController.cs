@@ -8,18 +8,18 @@ namespace GameOffJam.Player
     {
         // References
 
-        PlayerMovement playerMovement;
-        PlayerInput playerInput;
+        PlayerMovement _playerMovement;
+        PlayerInput _playerInput;
 
         private void Awake()
         {
-            playerMovement = GetComponent<PlayerMovement>();
-            playerInput = GetComponent<PlayerInput>();
+            _playerMovement = GetComponent<PlayerMovement>();
+            _playerInput = GetComponent<PlayerInput>();
         }
 
         private void Update()
         {
-            playerMovement.GetMovementInput(playerInput.MoveInput);
+            _playerMovement.GetMovementInput(_playerInput.MoveInput);
         }
     }
 }
