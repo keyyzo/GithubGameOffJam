@@ -291,13 +291,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOffJam.Player.PlayerMovement
   playerModelPivot: {fileID: 1415746944}
-  maxMovementSpeed: 9
+  moveSpeed: 8
   accelerationFactor: 10
   decelerationFactor: 15
-  moveRotationSpeed: 1500
+  turnSpeed: 10
+  rotationSpeed: 360
   smoothTime: 0.05
-  maxGravitySpeed: -5
-  gravityMultiplier: 0.1
+  gravitySpeed: -10.62
+  terminalSpeed: 28
+  lowGravityMultiplier: 2.2
+  strongGravityMultiplier: 2.8
 --- !u!114 &481556168
 MonoBehaviour:
   m_ObjectHideFlags: 0

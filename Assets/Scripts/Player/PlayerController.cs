@@ -13,8 +13,9 @@ namespace GameOffJam.Player
 
         private void Awake()
         {
-            _playerMovement = GetComponent<PlayerMovement>();
             _playerInput = GetComponent<PlayerInput>();
+            _playerMovement = GetComponent<PlayerMovement>();
+            
         }
 
         private void Update()

@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Utilities;
 
 namespace GameOffJam.Player
 {
@@ -16,23 +18,26 @@ namespace GameOffJam.Player
 
         [Header("Base Movement")]
 
-        [SerializeField] float maxMovementSpeed = 8.0f;
+        [SerializeField] float moveSpeed = 8.0f;
         [SerializeField] float accelerationFactor = 6.0f;
         [SerializeField] float decelerationFactor = 10.0f;
+        [SerializeField] float turnSpeed = 10.0f;
 
         [Space(2)]
 
         [Header("Rotation")]
 
-        [SerializeField] float moveRotationSpeed = 360f;
+        [SerializeField] float rotationSpeed = 360f;
         [SerializeField] float smoothTime = 0.05f;
 
         [Space(2)]
 
         [Header("Gravity")]
 
-        [SerializeField] float maxGravitySpeed = -12.0f;
-        [SerializeField] float gravityMultiplier = 2.0f;
+        [SerializeField] float gravitySpeed = -12.0f;
+        [SerializeField] float terminalSpeed = 20.0f;
+        [SerializeField] float lowGravityMultiplier = 2.0f;
+        [SerializeField] float strongGravityMultiplier = 2.5f;
 
         #endregion
 
@@ -40,6 +45,8 @@ namespace GameOffJam.Player
 
         float _currentSpeed;
         float _velocity;
+
+        bool _isGrounded;
         
         // Alternative method to movement
 
@@ -48,9 +55,18 @@ namespace GameOffJam.Player
         
         Vector3 _direction;
 
+        Vector3 _altVelocity;
+        Vector3 _gravityVector;
+
         // Inputs
 
         Vector3 _movementInput;
+
+        // Rotation Input Vectors
+        Vector3 inputVectorRot, inputVelocityRot;
+
+        // Movement Input Vectors
+        Vector3 inputVectorMove, inputVelocityMove;
 
         #endregion
 
@@ -73,18 +89,23 @@ namespace GameOffJam.Player
 
         private void Update()
         {
+            // ----- Alt Movement Test-----
+
+            _isGrounded = IsGrounded();
+            AlternativeSmoothMovement();
+
             // ----- Direction Functions -----
 
-            ProcessLookDirection();
+            //ProcessLookDirection();
             
             // ----- Gravity Functions -----
         
-            ProcessGravity();
+            //ProcessGravity();
 
             // ----- General Movement Functions -----
 
-            CalculateSpeed();
-            ProcessMovement();
+            //CalculateSpeed();
+            //ProcessMovement();
             //AlternativeProcessMovement();
 
             
@@ -109,14 +130,54 @@ namespace GameOffJam.Player
             Vector3 upMovement = _forward * (_currentSpeed * Time.deltaTime * _movementInput.z);
             
             Vector3 forwardMovement = Vector3.Normalize(rightMovement + upMovement);
-            transform.forward += Vector3.RotateTowards(transform.forward, forwardMovement, 360f , moveRotationSpeed * Time.deltaTime);
+            transform.forward += Vector3.RotateTowards(transform.forward, forwardMovement, 360f , rotationSpeed * Time.deltaTime);
             _characterController.Move((rightMovement + upMovement) + _direction);
+        }
+
+        private void AlternativeSmoothMovement()
+        {
+            inputVectorRot = Vector3.SmoothDamp(inputVectorRot, _movementInput, ref inputVelocityRot, 0.1f, _isGrounded ? Mathf.Infinity : 6);
+
+            inputVectorMove = Vector3.SmoothDamp(inputVectorMove, _movementInput, ref inputVelocityMove, 0.05f, turnSpeed);
+
+            if (inputVectorRot != Vector3.zero)
+            { 
+                Quaternion targetRot = Quaternion.LookRotation(inputVectorRot.ToIso(), Vector3.up);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+
+                playerModelPivot.transform.rotation = Quaternion.RotateTowards(playerModelPivot.transform.rotation, targetRot, 100.0f * Time.deltaTime);
+            }
+
+            _altVelocity.x = inputVectorMove.ToIso().x * moveSpeed;
+            _altVelocity.z = inputVectorMove.ToIso().z * moveSpeed;
+
+            //if (_altVelocity.y > 0.0f)
+            //{
+            //    _gravityVector.y = (gravitySpeed * lowGravityMultiplier);
+            //}
+
+            if (IsGrounded())
+            {
+                _gravityVector.y = (gravitySpeed / 2);
+                _altVelocity.y = _gravityVector.y;
+            }
+
+            else
+            {
+                _gravityVector.y = (gravitySpeed * strongGravityMultiplier);
+            }
+
+            _altVelocity.y += (_gravityVector.y) * Time.deltaTime;
+
+            _altVelocity.y = Mathf.Clamp(_altVelocity.y, -terminalSpeed, terminalSpeed);
+
+            _characterController.Move(_altVelocity * Time.deltaTime);
         }
 
         #endregion
         
 
-        #region Gravity Functions
+        #region Gravity and Grounded Functions
 
         private void ProcessGravity()
         {
@@ -132,7 +193,7 @@ namespace GameOffJam.Player
 
             else
             {
-                _velocity += maxGravitySpeed * gravityMultiplier * Time.deltaTime;
+                _velocity += gravitySpeed * lowGravityMultiplier * Time.deltaTime;
                 
                 Debug.Log("Character is not grounded: " + _characterController.isGrounded);
             }
@@ -140,6 +201,11 @@ namespace GameOffJam.Player
             _direction.y = _velocity;
             //_movementInput.y = _velocity;
             
+        }
+
+        private bool IsGrounded()
+        { 
+            return _characterController.isGrounded;
         }
 
         #endregion
@@ -153,12 +219,12 @@ namespace GameOffJam.Player
                 _currentSpeed -= decelerationFactor * Time.deltaTime;
             }
 
-            else if (_movementInput != Vector3.zero && _currentSpeed < maxMovementSpeed)
+            if (_movementInput != Vector3.zero && _currentSpeed < moveSpeed)
             {
                 _currentSpeed += accelerationFactor * Time.deltaTime;
             }
 
-            _currentSpeed = Mathf.Clamp(_currentSpeed, 0f, maxMovementSpeed);
+            _currentSpeed = Mathf.Clamp(_currentSpeed, 0f, moveSpeed);
         }
 
         private void ProcessMovement()
@@ -184,10 +250,10 @@ namespace GameOffJam.Player
                 return;
             
             
-            Matrix4x4 isometricMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
-            Vector3 multipliedMatrix = isometricMatrix.MultiplyPoint3x4(_movementInput);
+            //Matrix4x4 isometricMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+            //Vector3 multipliedMatrix = isometricMatrix.MultiplyPoint3x4(_movementInput);
 
-            Vector3 relative = (transform.position + multipliedMatrix) - transform.position;
+            Vector3 relative = (transform.position + _movementInput.ToIso()) - transform.position;
             Quaternion rot = Quaternion.LookRotation(relative, Vector3.up);
 
             
