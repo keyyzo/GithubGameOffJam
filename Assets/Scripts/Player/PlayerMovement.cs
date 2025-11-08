@@ -225,22 +225,24 @@ namespace GameOffJam.Player
 
         public void ActivateWaveRiding(float waveStrength, Vector3 waveDirection)
         {
-            
-            _isWaveRiding = true;
-            _waveStrength = waveStrength;
-            _waveDirection = waveDirection;
+            if (!_isWaveRiding && (waveStrength > 0.0f || waveDirection != Vector3.zero))
+            {
+                _isWaveRiding = true;
+                _waveStrength = waveStrength;
+                _waveDirection = waveDirection;
 
-            if (_altVelocity.y < 0.0f)
-            { 
-                _altVelocity.y = 0.0f;
+                if (_altVelocity.y < 0.0f && waveDirection.y >= 1.0f)
+                {
+                    _altVelocity.y = 0.0f;
+                }
             }
 
-            //else
-            //{ 
-            //    _isWaveRiding = false;
-            //    _waveStrength = 0.0f;
-            //    _waveDirection = Vector3.zero;
-            //}
+            else
+            {
+                _isWaveRiding = false;
+                _waveStrength = 0.0f;
+                _waveDirection = Vector3.zero;
+            }
         }
 
         public void DisableWaveRiding()

@@ -15,7 +15,7 @@ namespace GameOffJam.Waves
         [Header("Wave Settings")]
 
         [SerializeField]
-        [Range(3.0f,30.0f)]
+        [Range(10.0f,150.0f)]
         float waveStrength = 12.0f;
 
         [SerializeField]
