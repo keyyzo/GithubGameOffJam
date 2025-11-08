@@ -43,11 +43,22 @@ namespace GameOffJam.Player
 
         #region Private Variables
 
+        // General Movement
+
         float _currentSpeed;
         float _velocity;
 
         bool _isGrounded;
-        
+
+        // Wave Riding
+
+        float _waveStrength;
+
+        bool _isWaveRiding;
+
+        Vector3 _waveDirection;
+
+
         // Alternative method to movement
 
         Vector3 _forward;
@@ -84,7 +95,7 @@ namespace GameOffJam.Player
 
         private void Start()
         {
-            SetupForwardAndRight();
+            _isWaveRiding = false;
         }
 
         private void Update()
@@ -96,17 +107,14 @@ namespace GameOffJam.Player
 
             // ----- Direction Functions -----
 
-            //ProcessLookDirection();
             
             // ----- Gravity Functions -----
         
-            //ProcessGravity();
+           
 
             // ----- General Movement Functions -----
 
-            //CalculateSpeed();
-            //ProcessMovement();
-            //AlternativeProcessMovement();
+           
 
             
 
@@ -115,24 +123,7 @@ namespace GameOffJam.Player
 
         #region Alternative Functions
 
-        private void SetupForwardAndRight()
-        {
-            if (Camera.main != null) _forward = Camera.main.transform.forward;
-            _forward.y = 0;
-            _forward = Vector3.Normalize(_forward);
-            _right = Quaternion.Euler(0, 90, 0) * _forward;
-            
-        }
-
-        private void AlternativeProcessMovement()
-        {
-            Vector3 rightMovement = _right * (_currentSpeed * Time.deltaTime * _movementInput.x);
-            Vector3 upMovement = _forward * (_currentSpeed * Time.deltaTime * _movementInput.z);
-            
-            Vector3 forwardMovement = Vector3.Normalize(rightMovement + upMovement);
-            transform.forward += Vector3.RotateTowards(transform.forward, forwardMovement, 360f , rotationSpeed * Time.deltaTime);
-            _characterController.Move((rightMovement + upMovement) + _direction);
-        }
+        
 
         private void AlternativeSmoothMovement()
         {
@@ -156,22 +147,47 @@ namespace GameOffJam.Player
             //    _gravityVector.y = (gravitySpeed * lowGravityMultiplier);
             //}
 
-            if (IsGrounded())
+            if (_isWaveRiding)
             {
+                Debug.Log("Wave riding should be occuring");
+                _gravityVector = (_waveDirection * _waveStrength);
+            }
+
+            else if (IsGrounded())
+            {
+                _gravityVector.x = 0.0f;
+                _gravityVector.z = 0.0f;
                 _gravityVector.y = (gravitySpeed / 2);
                 _altVelocity.y = _gravityVector.y;
             }
 
             else
             {
+                _gravityVector.x = 0.0f;
+                _gravityVector.z = 0.0f;
                 _gravityVector.y = (gravitySpeed * strongGravityMultiplier);
             }
 
-            _altVelocity.y += (_gravityVector.y) * Time.deltaTime;
+            if (!_isWaveRiding)
+            {
+                _altVelocity.y += (_gravityVector.y) * Time.deltaTime;
 
-            _altVelocity.y = Mathf.Clamp(_altVelocity.y, -terminalSpeed, terminalSpeed);
+                _altVelocity.y = Mathf.Clamp(_altVelocity.y, -terminalSpeed, terminalSpeed);
+
+                
+            }
+
+            else
+            {
+                _altVelocity += (_gravityVector) * Time.deltaTime;
+
+                _altVelocity.x = Mathf.Clamp(_altVelocity.x, -terminalSpeed, terminalSpeed);
+                _altVelocity.y = Mathf.Clamp(_altVelocity.y, -terminalSpeed, terminalSpeed);
+                _altVelocity.z = Mathf.Clamp(_altVelocity.z, -terminalSpeed, terminalSpeed);
+            }
 
             _characterController.Move(_altVelocity * Time.deltaTime);
+
         }
 
         #endregion
@@ -179,29 +195,7 @@ namespace GameOffJam.Player
 
         #region Gravity and Grounded Functions
 
-        private void ProcessGravity()
-        {
-            
-            
-            if (_characterController.isGrounded && _velocity < 0.0f)
-            {
-                _velocity = -1f * Time.deltaTime;
-                
-                Debug.Log("Character is Grounded: " + _characterController.isGrounded);
-                
-            }
-
-            else
-            {
-                _velocity += gravitySpeed * lowGravityMultiplier * Time.deltaTime;
-                
-                Debug.Log("Character is not grounded: " + _characterController.isGrounded);
-            }
-
-            _direction.y = _velocity;
-            //_movementInput.y = _velocity;
-            
-        }
+        
 
         private bool IsGrounded()
         { 
@@ -211,6 +205,60 @@ namespace GameOffJam.Player
         #endregion
 
         #region Movement Functions
+
+       
+
+        #endregion
+
+        
+        #region Public Functions
+
+        // Movement
+
+        public void GetMovementInput(Vector2 movementInput)
+        {
+            _movementInput = new Vector3(movementInput.x, 0.0f, movementInput.y);
+            //Debug.Log(_movementInput);
+        }
+
+        // Wave Detection
+
+        public void ActivateWaveRiding(float waveStrength, Vector3 waveDirection)
+        {
+            
+            _isWaveRiding = true;
+            _waveStrength = waveStrength;
+            _waveDirection = waveDirection;
+
+            if (_altVelocity.y < 0.0f)
+            { 
+                _altVelocity.y = 0.0f;
+            }
+
+            //else
+            //{ 
+            //    _isWaveRiding = false;
+            //    _waveStrength = 0.0f;
+            //    _waveDirection = Vector3.zero;
+            //}
+        }
+
+        public void DisableWaveRiding()
+        {
+            _isWaveRiding = false;
+            _waveStrength = 0.0f;
+            _waveDirection = Vector3.zero;
+        }
+
+        #endregion
+
+        // The point of this region is due to my tendencies as a programmer
+        // I look back on old implementations incase there is something I can use
+        // Or how to progress on from that for future problems
+
+        #region Previously Implemented / No Longer Use Functions
+
+        // Movement
 
         private void CalculateSpeed()
         {
@@ -238,6 +286,8 @@ namespace GameOffJam.Player
             _characterController.Move(moveDirection);
         }
 
+        // Look
+
         private void ProcessLookDirection()
         {
             // if (_movementInput == Vector3.zero)
@@ -248,15 +298,15 @@ namespace GameOffJam.Player
 
             if (_movementInput == Vector3.zero)
                 return;
-            
-            
+
+
             //Matrix4x4 isometricMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
             //Vector3 multipliedMatrix = isometricMatrix.MultiplyPoint3x4(_movementInput);
 
             Vector3 relative = (transform.position + _movementInput.ToIso()) - transform.position;
             Quaternion rot = Quaternion.LookRotation(relative, Vector3.up);
 
-            
+
 
 
 
@@ -266,21 +316,54 @@ namespace GameOffJam.Player
             //layerModelPivot.transform.rotation = Quaternion.RotateTowards(playerModelPivot.transform.rotation, rot, moveRotationSpeed * Time.deltaTime);
         }
 
-        #endregion
+        // Gravity
 
-        
-        #region Public Functions
-
-        // Movement
-
-        public void GetMovementInput(Vector2 movementInput)
+        private void ProcessGravity()
         {
-            _movementInput = new Vector3(movementInput.x, 0.0f, movementInput.y);
-            //Debug.Log(_movementInput);
+
+
+            if (_characterController.isGrounded && _velocity < 0.0f)
+            {
+                _velocity = -1f * Time.deltaTime;
+
+                Debug.Log("Character is Grounded: " + _characterController.isGrounded);
+
+            }
+
+            else
+            {
+                _velocity += gravitySpeed * lowGravityMultiplier * Time.deltaTime;
+
+                Debug.Log("Character is not grounded: " + _characterController.isGrounded);
+            }
+
+            _direction.y = _velocity;
+            //_movementInput.y = _velocity;
+
+        }
+
+        // Old alternative approach
+
+        private void SetupForwardAndRight()
+        {
+            if (Camera.main != null) _forward = Camera.main.transform.forward;
+            _forward.y = 0;
+            _forward = Vector3.Normalize(_forward);
+            _right = Quaternion.Euler(0, 90, 0) * _forward;
+
+        }
+
+        private void AlternativeProcessMovement()
+        {
+            Vector3 rightMovement = _right * (_currentSpeed * Time.deltaTime * _movementInput.x);
+            Vector3 upMovement = _forward * (_currentSpeed * Time.deltaTime * _movementInput.z);
+
+            Vector3 forwardMovement = Vector3.Normalize(rightMovement + upMovement);
+            transform.forward += Vector3.RotateTowards(transform.forward, forwardMovement, 360f, rotationSpeed * Time.deltaTime);
+            _characterController.Move((rightMovement + upMovement) + _direction);
         }
 
         #endregion
-
 
     }
 
