@@ -79,6 +79,8 @@ namespace GameOffJam.Player
             //cinemachineCamera.transform.rotation = Quaternion.RotateTowards(cinemachineCamera.transform.rotation, newRotation, MAP_ROTATE_VALUE);
             cinemachineCamera.transform.rotation = Quaternion.Slerp(cinemachineCamera.transform.rotation, newRotation, Time.deltaTime / timeToRotate);
             Utilities.Utils.SetIsometricAngle(newAngle);
+
+            StartCoroutine(RotateMapRightRoutine());
         }
 
         private void RotateMapLeft()
@@ -130,9 +132,11 @@ namespace GameOffJam.Player
             Quaternion newRotation = Quaternion.Euler(_xRotation, newAngle, 0.0f);
             //cinemachineCamera.transform.rotation = Quaternion.RotateTowards(cinemachineCamera.transform.rotation, newRotation, MAP_ROTATE_VALUE);
 
+            while (cinemachineCamera.transform.rotation != newRotation)
+            {
+                cinemachineCamera.transform.rotation = Quaternion.Slerp(cinemachineCamera.transform.rotation, newRotation, Time.deltaTime / timeToRotate);
+            }
 
-
-            cinemachineCamera.transform.rotation = Quaternion.Slerp(cinemachineCamera.transform.rotation, newRotation, Time.deltaTime / timeToRotate);
             Utilities.Utils.SetIsometricAngle(newAngle);
 
             yield return null;
