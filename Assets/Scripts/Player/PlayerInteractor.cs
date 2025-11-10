@@ -19,14 +19,28 @@ namespace GameOffJam.Player
 
         private void ActivateInteract()
         {
+            
+            // WARNING: This current implementation will not work with a hold button mechanic
+            // This will need revised in the future if such a mechanic is being implemented
+            // For the jam's purpose, this will do for now
+
+            
             if ((Component)currentInteractable != null && isInteracting && !hasInteracted)
             {
                 hasInteracted = true;
                 currentInteractable.OnInteract();
+            }
+
+            if (isInteracting && !hasInteracted)
+            {
+                hasInteracted = true;
+            }
+
+            if (!isInteracting && hasInteracted)
+            {
                 hasInteracted = false;
             }
 
-            
         }
 
         private void SetCurrentInteractable(IInteractable newInteractable)
@@ -47,7 +61,7 @@ namespace GameOffJam.Player
 
             currentInteractable.CancelInteractionPrompt();
             currentInteractable = null;
-            hasInteracted = false;
+            //hasInteracted = false;
             Debug.Log("Interactable disabled");
         }
 
