@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2968885183816222195
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2975837679350318226, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_text
+      value: Rescue?
+      objectReference: {fileID: 0}
+    - target: {fileID: 2975837679350318226, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_fontSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2975837679350318226, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5407189874141725751, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      propertyPath: m_Name
+      value: CatCollectable
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5996559079791378193, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5407189874141725751, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7748538157597299503}
+  m_SourcePrefab: {fileID: 100100000, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+--- !u!1 &3079981717276836814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 256092020180944445, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+  m_PrefabInstance: {fileID: 2968885183816222195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7077877210119913924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5407189874141725751, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
+  m_PrefabInstance: {fileID: 2968885183816222195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7748538157597299503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077877210119913924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2ecb5c7c84cee41a083c22af2531df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOffJam.Interactable.CatInteractable
+  interactText: {fileID: 3079981717276836814}

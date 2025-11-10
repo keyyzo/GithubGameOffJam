@@ -2,29 +2,36 @@ using UnityEngine;
 
 namespace GameOffJam.Interactable
 {
-    public class TestInteractable : BaseInteractable
+    public class CatInteractable : BaseInteractable
     {
         [SerializeField] GameObject interactText;
-        [SerializeField] Material interactMaterial;
-        [SerializeField] Material originalMaterial;
+
+
+        // private variables
 
         
-        MeshRenderer meshRenderer;
 
         private void Start()
         {
-            meshRenderer = GetComponentInChildren<MeshRenderer>();
-
             interactText?.SetActive(false);
         }
 
+
+        private void ProcessPickup()
+        { 
+            Destroy(gameObject);
+        }
+
+        #region Interactable Interface Functions
+
         public override void OnInteract()
         {
-            if (hasBeenPrompted && !hasBeenInteracted)
+            if ((UnityEngine.Object)this != null && hasBeenPrompted && !hasBeenInteracted)
             {
                 hasBeenInteracted = true;
-                meshRenderer.material = interactMaterial;
                 interactText.SetActive(false);
+
+                ProcessPickup();
 
             }
         }
@@ -37,7 +44,7 @@ namespace GameOffJam.Interactable
                 interactText?.SetActive(true);
             }
 
-           
+
         }
 
         public override void CancelInteractionPrompt()
@@ -48,10 +55,11 @@ namespace GameOffJam.Interactable
             }
 
             hasBeenPrompted = false;
-            
+
         }
 
-        
+        #endregion
+
     }
 }
 

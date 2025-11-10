@@ -1,3 +1,4 @@
+using GameOffJam.Interactable;
 using UnityEngine;
 
 namespace GameOffJam.Player
@@ -7,8 +8,8 @@ namespace GameOffJam.Player
         bool isInteracting = false;
         bool hasInteracted = false;
         public bool IsInteracting => isInteracting;
-    
 
+        //BaseInteractable currentInteractable;
         IInteractable currentInteractable;
 
         private void Update()
@@ -18,10 +19,11 @@ namespace GameOffJam.Player
 
         private void ActivateInteract()
         {
-            if (currentInteractable != null && isInteracting && !hasInteracted)
+            if ((Component)currentInteractable != null && isInteracting && !hasInteracted)
             {
                 hasInteracted = true;
                 currentInteractable.OnInteract();
+                hasInteracted = false;
             }
 
             
