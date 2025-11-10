@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.43
       objectReference: {fileID: 0}
     - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.500001
       objectReference: {fileID: 0}
     - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -14.33
       objectReference: {fileID: 0}
     - target: {fileID: 1539164157727951450, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2975837679350318226, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
       propertyPath: m_text
-      value: Rescue?
+      value: Rescue Cat?
       objectReference: {fileID: 0}
     - target: {fileID: 2975837679350318226, guid: 3c7a2051a6f11a44f8fb1768a1a318dc, type: 3}
       propertyPath: m_fontSize

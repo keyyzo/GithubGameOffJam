@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 9183328182532022326}
   - component: {fileID: 979208590469604182}
   - component: {fileID: 1266101242411007051}
+  - component: {fileID: 6002265604580768427}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -229,6 +230,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bced8c71480fa5499d5ae3821d9e47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOffJam.Input.PlayerInput
+--- !u!114 &6002265604580768427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4959209649043169992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307c20f679ae0db45956a19f6802b662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOffJam.Player.PlayerInteractor
 --- !u!1 &6821174401204515768
 GameObject:
   m_ObjectHideFlags: 0

@@ -113,6 +113,24 @@ namespace GameOffJam.Input
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""RotateRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b899fa6-c740-462b-a395-15e2b5d256c1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""d579d89b-48ff-49e6-a96f-ec6227e9d5df"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""a56cfb3e-ba11-4924-a192-fe3a18d048c7"",
@@ -309,6 +327,72 @@ namespace GameOffJam.Input
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7af9ec7f-01f4-4041-ba23-90ad293c23de"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1d95a954-3314-45e1-a47d-1a1b206ea1ca"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b123c9b-6828-40d9-8953-2add850a5016"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa59dcc0-6d8e-42ed-a6b2-505ea9d7f593"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73828ccb-ba7f-4d63-8d85-84278e5d5b0b"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00fe241d-7026-4774-afe3-b9e6854a3716"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -319,6 +403,8 @@ namespace GameOffJam.Input
             m_PlayerMap = asset.FindActionMap("PlayerMap", throwIfNotFound: true);
             m_PlayerMap_Move = m_PlayerMap.FindAction("Move", throwIfNotFound: true);
             m_PlayerMap_Interact = m_PlayerMap.FindAction("Interact", throwIfNotFound: true);
+            m_PlayerMap_RotateRight = m_PlayerMap.FindAction("RotateRight", throwIfNotFound: true);
+            m_PlayerMap_RotateLeft = m_PlayerMap.FindAction("RotateLeft", throwIfNotFound: true);
             m_PlayerMap_Pause = m_PlayerMap.FindAction("Pause", throwIfNotFound: true);
         }
 
@@ -402,6 +488,8 @@ namespace GameOffJam.Input
         private List<IPlayerMapActions> m_PlayerMapActionsCallbackInterfaces = new List<IPlayerMapActions>();
         private readonly InputAction m_PlayerMap_Move;
         private readonly InputAction m_PlayerMap_Interact;
+        private readonly InputAction m_PlayerMap_RotateRight;
+        private readonly InputAction m_PlayerMap_RotateLeft;
         private readonly InputAction m_PlayerMap_Pause;
         /// <summary>
         /// Provides access to input actions defined in input action map "PlayerMap".
@@ -422,6 +510,14 @@ namespace GameOffJam.Input
             /// Provides access to the underlying input action "PlayerMap/Interact".
             /// </summary>
             public InputAction @Interact => m_Wrapper.m_PlayerMap_Interact;
+            /// <summary>
+            /// Provides access to the underlying input action "PlayerMap/RotateRight".
+            /// </summary>
+            public InputAction @RotateRight => m_Wrapper.m_PlayerMap_RotateRight;
+            /// <summary>
+            /// Provides access to the underlying input action "PlayerMap/RotateLeft".
+            /// </summary>
+            public InputAction @RotateLeft => m_Wrapper.m_PlayerMap_RotateLeft;
             /// <summary>
             /// Provides access to the underlying input action "PlayerMap/Pause".
             /// </summary>
@@ -458,6 +554,12 @@ namespace GameOffJam.Input
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @RotateRight.started += instance.OnRotateRight;
+                @RotateRight.performed += instance.OnRotateRight;
+                @RotateRight.canceled += instance.OnRotateRight;
+                @RotateLeft.started += instance.OnRotateLeft;
+                @RotateLeft.performed += instance.OnRotateLeft;
+                @RotateLeft.canceled += instance.OnRotateLeft;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -478,6 +580,12 @@ namespace GameOffJam.Input
                 @Interact.started -= instance.OnInteract;
                 @Interact.performed -= instance.OnInteract;
                 @Interact.canceled -= instance.OnInteract;
+                @RotateRight.started -= instance.OnRotateRight;
+                @RotateRight.performed -= instance.OnRotateRight;
+                @RotateRight.canceled -= instance.OnRotateRight;
+                @RotateLeft.started -= instance.OnRotateLeft;
+                @RotateLeft.performed -= instance.OnRotateLeft;
+                @RotateLeft.canceled -= instance.OnRotateLeft;
                 @Pause.started -= instance.OnPause;
                 @Pause.performed -= instance.OnPause;
                 @Pause.canceled -= instance.OnPause;
@@ -535,6 +643,20 @@ namespace GameOffJam.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnInteract(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "RotateRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnRotateRight(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "RotateLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnRotateLeft(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>

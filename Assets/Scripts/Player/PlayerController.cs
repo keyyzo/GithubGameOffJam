@@ -11,12 +11,14 @@ namespace GameOffJam.Player
         PlayerMovement _playerMovement;
         PlayerInput _playerInput;
         PlayerInteractor _playerInteractor;
+        PlayerMapRotater _playerMapRotater;
 
         private void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
             _playerMovement = GetComponent<PlayerMovement>();
             _playerInteractor = GetComponent<PlayerInteractor>();
+            _playerMapRotater = GetComponent<PlayerMapRotater>();
             
         }
 
@@ -24,6 +26,8 @@ namespace GameOffJam.Player
         {
             _playerMovement.GetMovementInput(_playerInput.MoveInput);
             _playerInteractor.SetInteracting(_playerInput.InteractInput);
+            _playerMapRotater.GetRotateLeftInput(_playerInput.RotateLeftInput);
+            _playerMapRotater.GetRotateRightInput(_playerInput.RotateRightInput);
         }
     }
 }

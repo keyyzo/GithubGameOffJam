@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 1474581528}
   m_Layer: 0
   m_Name: ENVIRONMENT
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -699,7 +699,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5638540398404785582, guid: 610375d46cf77964f8504ea6dc4ad82b, type: 3}
   m_PrefabInstance: {fileID: 1565081117386823045}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1660361692
+--- !u!114 &1660361697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -708,9 +708,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1660361686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 307c20f679ae0db45956a19f6802b662, type: 3}
+  m_Script: {fileID: 11500000, guid: 79f213c80637ba94bb6186b64e1ce5f5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameOffJam.Player.PlayerInteractor
+  m_EditorClassIdentifier: Assembly-CSharp::GameOffJam.Player.PlayerMapRotater
+  rotationSpeed: 10
+  timeToRotate: 0.5
 --- !u!1001 &1670092436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1028,7 +1030,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4959209649043169992, guid: 610375d46cf77964f8504ea6dc4ad82b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1660361692}
+      addedObject: {fileID: 1660361697}
   m_SourcePrefab: {fileID: 100100000, guid: 610375d46cf77964f8504ea6dc4ad82b, type: 3}
 --- !u!1001 &7846246673485111462
 PrefabInstance:

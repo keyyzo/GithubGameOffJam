@@ -21,12 +21,20 @@ namespace GameOffJam.Input
         bool pauseInput = false;
         bool pauseAlreadyDown = false;
 
+        bool rotateRightInput = false;
+
+        bool rotateLeftInput = false;
+
         // public properties
 
         public Vector2 MoveInput => moveInput;
 
         public bool InteractInput => interactInput;
         public bool PauseInput => pauseInput;
+
+        public bool RotateLeftInput => rotateLeftInput;
+
+        public bool RotateRightInput => rotateRightInput;
 
         private void OnEnable()
         {
@@ -61,18 +69,30 @@ namespace GameOffJam.Input
             playerInputActions.PlayerMap.Interact.started += OnInteract;
             playerInputActions.PlayerMap.Interact.performed += OnInteract;
             playerInputActions.PlayerMap.Interact.canceled += OnInteract;
+
             playerInputActions.PlayerMap.Pause.performed += OnPause;
 
-           
+            playerInputActions.PlayerMap.RotateRight.performed += OnRotateRight;
+            playerInputActions.PlayerMap.RotateRight.canceled += OnRotateRight;
+
+            playerInputActions.PlayerMap.RotateLeft.performed += OnRotateLeft;
+            playerInputActions.PlayerMap.RotateLeft.canceled += OnRotateLeft;
+
         }
 
         private void UnsubscribePlayerActions()
         {
-            //playerInputActions.PlayerMap.Move.performed -= OnMove;
             playerInputActions.PlayerMap.Interact.started -= OnInteract;
             playerInputActions.PlayerMap.Interact.performed -= OnInteract;
             playerInputActions.PlayerMap.Interact.canceled -= OnInteract;
+
             playerInputActions.PlayerMap.Pause.performed -= OnPause;
+
+            playerInputActions.PlayerMap.RotateRight.performed -= OnRotateRight;
+            playerInputActions.PlayerMap.RotateRight.canceled -= OnRotateRight;
+
+            playerInputActions.PlayerMap.RotateLeft.performed -= OnRotateLeft;
+            playerInputActions.PlayerMap.RotateLeft.canceled -= OnRotateLeft;
         }
 
         private void OnMove(InputAction.CallbackContext context)
@@ -94,6 +114,8 @@ namespace GameOffJam.Input
                 interactInput = false;
             }
         }
+
+        // Will clean up old functions later down the line
 
         private void OnInteract_Started(InputAction.CallbackContext context)
         {
@@ -157,6 +179,32 @@ namespace GameOffJam.Input
 
             //Debug.Log("Pause context: " + context);
             //Debug.Log("Pause bool: " + pauseInput);
+        }
+
+        private void OnRotateRight(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            { 
+                rotateRightInput = true;
+            }
+
+            if (context.phase == InputActionPhase.Canceled)
+            { 
+                rotateRightInput = false;
+            }
+        }
+
+        private void OnRotateLeft(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                rotateLeftInput = true;
+            }
+
+            if (context.phase == InputActionPhase.Canceled)
+            {
+                rotateLeftInput = false;
+            }
         }
 
     }
