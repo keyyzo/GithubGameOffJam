@@ -70,29 +70,13 @@ namespace GameOffJam.Player
 
         private void RotateMapRight()
         {
-            //float newAngle = cinemachineCamera.transform.rotation.eulerAngles.y - MAP_ROTATE_VALUE;
-
-            //RemoveNegativeEulerAngle(newAngle);
-
-            //Quaternion newRotation = Quaternion.Euler(_xRotation, newAngle, 0.0f);
-            ////cinemachineCamera.transform.rotation = Quaternion.RotateTowards(cinemachineCamera.transform.rotation, newRotation, MAP_ROTATE_VALUE);
-            //cinemachineCamera.transform.rotation = Quaternion.Slerp(cinemachineCamera.transform.rotation, newRotation, Time.deltaTime / timeToRotate);
-            //Utilities.Utils.SetIsometricAngle(newAngle);
-
+            
             StartCoroutine(RotateMapRightRoutine());
         }
 
         private void RotateMapLeft()
         {
-            //float newAngle = cinemachineCamera.transform.rotation.eulerAngles.y + MAP_ROTATE_VALUE;
-
-            //RemoveNegativeEulerAngle(newAngle);
-
-            //Quaternion newRotation = Quaternion.Euler(_xRotation, newAngle, 0.0f);
-            ////cinemachineCamera.transform.rotation = Quaternion.RotateTowards(cinemachineCamera.transform.rotation, newRotation, MAP_ROTATE_VALUE);
-            //cinemachineCamera.transform.rotation = Quaternion.Slerp(cinemachineCamera.transform.rotation, newRotation, Time.deltaTime / timeToRotate);
-            //Utilities.Utils.SetIsometricAngle(newAngle);
-
+            
             StartCoroutine(RotateMapRightRoutine(false));
         }
 
