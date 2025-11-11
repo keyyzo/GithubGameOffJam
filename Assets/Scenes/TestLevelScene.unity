@@ -573,7 +573,6 @@ Transform:
   - {fileID: 1559040934}
   - {fileID: 26447612}
   - {fileID: 1019444565}
-  - {fileID: 1660361691}
   - {fileID: 1986599952}
   - {fileID: 1001230673}
   m_Father: {fileID: 0}
@@ -694,11 +693,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4959209649043169992, guid: 610375d46cf77964f8504ea6dc4ad82b, type: 3}
   m_PrefabInstance: {fileID: 1565081117386823045}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1660361691 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5638540398404785582, guid: 610375d46cf77964f8504ea6dc4ad82b, type: 3}
-  m_PrefabInstance: {fileID: 1565081117386823045}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1660361697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOffJam.Player.PlayerMapRotater
   rotationSpeed: 10
-  timeToRotate: 0.5
+  timeToRotate: 0.8
 --- !u!1001 &1670092436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -978,7 +972,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1474581528}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4959209649043169992, guid: 610375d46cf77964f8504ea6dc4ad82b, type: 3}
       propertyPath: m_Name
@@ -1159,6 +1153,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 7846246673485111462}
   - {fileID: 156584828}
+  - {fileID: 1565081117386823045}
   - {fileID: 1474581528}
   - {fileID: 1773415873}
   - {fileID: 1670092436}

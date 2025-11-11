@@ -12,7 +12,7 @@ namespace GameOffJam.Player
         [SerializeField] float rotationSpeed = 10.0f;
         [SerializeField] float timeToRotate = 0.5f;
 
-        const string MAP_OBJECT_STRING = "Environment";
+        const float STARTING_ISO_ANGLED = 45f;
 
         const float MAP_ROTATE_VALUE = 90f;
 
@@ -26,6 +26,8 @@ namespace GameOffJam.Player
 
         float _xRotation;
 
+        float _rotatingTimer = 0.0f;
+
         // Cached objects
 
         GameObject mapObject;
@@ -37,6 +39,7 @@ namespace GameOffJam.Player
             yield return null;
             cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
             _xRotation  = cinemachineCamera.transform.rotation.eulerAngles.x;
+            Utilities.Utils.SetIsometricAngle(STARTING_ISO_ANGLED);
             
         }
 
@@ -49,7 +52,7 @@ namespace GameOffJam.Player
         {
             if (_rotateRightInput && !_isRotating)
             {
-                _isRotating = true;
+                //_isRotating = true;
 
                 RotateMapRight();
 
@@ -57,42 +60,40 @@ namespace GameOffJam.Player
 
             if (_rotateLeftInput && !_isRotating)
             {
-                _isRotating = true;
-
+                
                 RotateMapLeft();
             }
 
-            if (!_rotateRightInput && !_rotateLeftInput && _isRotating)
-            {
-                _isRotating = false;
-            }
+            
         }
 
 
         private void RotateMapRight()
         {
-            float newAngle = cinemachineCamera.transform.rotation.eulerAngles.y - MAP_ROTATE_VALUE;
+            //float newAngle = cinemachineCamera.transform.rotation.eulerAngles.y - MAP_ROTATE_VALUE;
 
-            RemoveNegativeEulerAngle(newAngle);
+            //RemoveNegativeEulerAngle(newAngle);
 
-            Quaternion newRotation = Quaternion.Euler(_xRotation, newAngle, 0.0f);
-            //cinemachineCamera.transform.rotation = Quaternion.RotateTowards(cinemachineCamera.transform.rotation, newRotation, MAP_ROTATE_VALUE);
-            cinemachineCamera.transform.rotation = Quaternion.Slerp(cinemachineCamera.transform.rotation, newRotation, Time.deltaTime / timeToRotate);
-            Utilities.Utils.SetIsometricAngle(newAngle);
+            //Quaternion newRotation = Quaternion.Euler(_xRotation, newAngle, 0.0f);
+            ////cinemachineCamera.transform.rotation = Quaternion.RotateTowards(cinemachineCamera.transform.rotation, newRotation, MAP_ROTATE_VALUE);
+            //cinemachineCamera.transform.rotation = Quaternion.Slerp(cinemachineCamera.transform.rotation, newRotation, Time.deltaTime / timeToRotate);
+            //Utilities.Utils.SetIsometricAngle(newAngle);
 
             StartCoroutine(RotateMapRightRoutine());
         }
 
         private void RotateMapLeft()
         {
-            float newAngle = cinemachineCamera.transform.rotation.eulerAngles.y + MAP_ROTATE_VALUE;
+            //float newAngle = cinemachineCamera.transform.rotation.eulerAngles.y + MAP_ROTATE_VALUE;
 
-            RemoveNegativeEulerAngle(newAngle);
+            //RemoveNegativeEulerAngle(newAngle);
 
-            Quaternion newRotation = Quaternion.Euler(_xRotation, newAngle, 0.0f);
-            //cinemachineCamera.transform.rotation = Quaternion.RotateTowards(cinemachineCamera.transform.rotation, newRotation, MAP_ROTATE_VALUE);
-            cinemachineCamera.transform.rotation = Quaternion.Slerp(cinemachineCamera.transform.rotation, newRotation, Time.deltaTime / timeToRotate);
-            Utilities.Utils.SetIsometricAngle(newAngle);
+            //Quaternion newRotation = Quaternion.Euler(_xRotation, newAngle, 0.0f);
+            ////cinemachineCamera.transform.rotation = Quaternion.RotateTowards(cinemachineCamera.transform.rotation, newRotation, MAP_ROTATE_VALUE);
+            //cinemachineCamera.transform.rotation = Quaternion.Slerp(cinemachineCamera.transform.rotation, newRotation, Time.deltaTime / timeToRotate);
+            //Utilities.Utils.SetIsometricAngle(newAngle);
+
+            StartCoroutine(RotateMapRightRoutine(false));
         }
 
         private float RemoveNegativeEulerAngle(float angleToFix)
@@ -121,31 +122,56 @@ namespace GameOffJam.Player
             _rotateLeftInput = rotateLeft;
         }
 
-        IEnumerator RotateMapRightRoutine()
+        /// <summary>
+        /// Rotates the camera clockwise / right if the "isRotatingRight" parameter is true.
+        /// If false, will rotate the camera anti-clockwise / left.
+        /// </summary>
+        /// <param name="isRotatingRight"></param>
+        /// <returns></returns>
+        IEnumerator RotateMapRightRoutine(bool isRotatingRight = true)
         {
+            
             _isRotating = true;
 
-            float newAngle = cinemachineCamera.transform.rotation.eulerAngles.y - MAP_ROTATE_VALUE;
+            float newAngle;
 
-            RemoveNegativeEulerAngle(newAngle);
-
-            Quaternion newRotation = Quaternion.Euler(_xRotation, newAngle, 0.0f);
-            //cinemachineCamera.transform.rotation = Quaternion.RotateTowards(cinemachineCamera.transform.rotation, newRotation, MAP_ROTATE_VALUE);
-
-            while (cinemachineCamera.transform.rotation != newRotation)
+            if (isRotatingRight)
             {
-                cinemachineCamera.transform.rotation = Quaternion.Slerp(cinemachineCamera.transform.rotation, newRotation, Time.deltaTime / timeToRotate);
+                newAngle = cinemachineCamera.transform.rotation.eulerAngles.y - MAP_ROTATE_VALUE;
             }
 
+            else
+            {
+                newAngle = cinemachineCamera.transform.rotation.eulerAngles.y + MAP_ROTATE_VALUE;
+            }
+
+
+
+                RemoveNegativeEulerAngle(newAngle);
+
+            Quaternion newRotation = Quaternion.Euler(_xRotation, newAngle, 0.0f);
+
+            while (_rotatingTimer < timeToRotate)
+            {
+                cinemachineCamera.transform.rotation = Quaternion.Lerp(cinemachineCamera.transform.rotation, newRotation, (_rotatingTimer / timeToRotate));
+                Utilities.Utils.SetIsometricAngle(newAngle);
+
+                _rotatingTimer += Time.deltaTime;
+
+                yield return null;
+            }
+
+            cinemachineCamera.transform.rotation = newRotation;
             Utilities.Utils.SetIsometricAngle(newAngle);
+            _rotatingTimer = 0.0f;
+
+            _isRotating = false;
 
             yield return null;
+
         }
 
-        IEnumerator RotateMapLeftRoutine() 
-        {
-            yield return null;
-        }
+        
 
     }
 }

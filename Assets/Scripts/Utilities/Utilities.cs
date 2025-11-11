@@ -11,12 +11,14 @@ namespace Utilities
 
         private static float _isometricAngle = 45f;
 
-        public static float ToIso(this float newAngle) => _isometricAngle = newAngle;
+        private static Matrix4x4 _isometricMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, _isometricAngle, 0));
+
+
 
         #region Isometric Functions
 
+        public static float ToIso(this float newAngle) => _isometricAngle = newAngle;
 
-        private static Matrix4x4 _isometricMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, _isometricAngle, 0));
         public static Vector3 ToIso(this Vector3 input) => _isometricMatrix.MultiplyPoint3x4(input);
 
         public static void SetIsometricAngle(float newAngle)
