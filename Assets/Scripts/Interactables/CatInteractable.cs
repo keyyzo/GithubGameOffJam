@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GameOffJam.Interactable
 {
-    public class CatInteractable : BaseInteractable
+    public class CatInteractable : BaseInteractable, ICollectable
     {
         [SerializeField] GameObject interactText;
 
@@ -31,7 +31,7 @@ namespace GameOffJam.Interactable
                 hasBeenInteracted = true;
                 interactText.SetActive(false);
 
-                ProcessPickup();
+                OnCollect();
 
             }
         }
@@ -56,6 +56,11 @@ namespace GameOffJam.Interactable
 
             hasBeenPrompted = false;
 
+        }
+
+        public void OnCollect()
+        {
+            ProcessPickup();
         }
 
         #endregion

@@ -395,6 +395,299 @@ namespace GameOffJam.Input
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MenuMap"",
+            ""id"": ""60e3676a-8de3-4cbc-8814-a5933de426ab"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""babb3fa1-02a2-459e-a1e4-de09d17c87a5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AltReturn"",
+                    ""type"": ""Button"",
+                    ""id"": ""9273a465-54b7-41d0-89ba-d60769bec6ff"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""141507a3-e32b-4380-b539-6849db88cbcc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""e73aa5d5-a903-491f-9272-fee461fdb9f9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""4508d30d-4b0c-4bcf-b20d-e745053c8510"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""723dc41c-59e8-4a20-8a0c-655568650cd9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c8496d20-6ee6-4f81-8a22-d3f068676b1c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ecba745b-1ef1-4b6b-9eda-c896c80258d8"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c1618d7-8725-4547-a789-679945d76763"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95fa845f-c355-4541-9f9b-e194f2c5bd7c"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltReturn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""034db96e-6726-4808-ab2f-b7d74b55e931"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltReturn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca7fef40-ba13-4a74-8527-188493903bd1"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b116f563-eec2-40aa-b747-f4a78c8f6e55"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c78453a6-807c-46e9-8dff-187f2f298ebf"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdecfac7-056e-4a43-a5b8-00cdf4722306"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2c003e4-e798-4bce-820f-289605dad8ef"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b34e5569-e259-4c38-a8b1-bd3956dd2be1"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c32e09e1-6b34-4677-82eb-46526adb5c4d"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6206cd16-ce38-42c2-b558-4465aa19ca46"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e10e22d3-92df-4478-8e68-3a2edf4d4c9a"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2de3750-1949-4c5a-ac5c-0cce01a1bf64"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8033e1f6-a282-4169-b769-e6eb27370a6e"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9141aef-b9b2-4973-944a-376684b5a6a2"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56aab863-c144-4a66-857b-b6b232c83529"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9baf6df8-b5b8-4769-8747-02b6a01f2ce0"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7eb6fe81-8aa1-447a-980f-9168cebc377d"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7312d59c-9ea3-4a57-991f-91ad09116dd6"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -406,11 +699,20 @@ namespace GameOffJam.Input
             m_PlayerMap_RotateRight = m_PlayerMap.FindAction("RotateRight", throwIfNotFound: true);
             m_PlayerMap_RotateLeft = m_PlayerMap.FindAction("RotateLeft", throwIfNotFound: true);
             m_PlayerMap_Pause = m_PlayerMap.FindAction("Pause", throwIfNotFound: true);
+            // MenuMap
+            m_MenuMap = asset.FindActionMap("MenuMap", throwIfNotFound: true);
+            m_MenuMap_Pause = m_MenuMap.FindAction("Pause", throwIfNotFound: true);
+            m_MenuMap_AltReturn = m_MenuMap.FindAction("AltReturn", throwIfNotFound: true);
+            m_MenuMap_MenuUp = m_MenuMap.FindAction("MenuUp", throwIfNotFound: true);
+            m_MenuMap_MenuDown = m_MenuMap.FindAction("MenuDown", throwIfNotFound: true);
+            m_MenuMap_MenuRight = m_MenuMap.FindAction("MenuRight", throwIfNotFound: true);
+            m_MenuMap_MenuLeft = m_MenuMap.FindAction("MenuLeft", throwIfNotFound: true);
         }
 
         ~@GameOffIA()
         {
             UnityEngine.Debug.Assert(!m_PlayerMap.enabled, "This will cause a leak and performance issues, GameOffIA.PlayerMap.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_MenuMap.enabled, "This will cause a leak and performance issues, GameOffIA.MenuMap.Disable() has not been called.");
         }
 
         /// <summary>
@@ -622,6 +924,157 @@ namespace GameOffJam.Input
         /// Provides a new <see cref="PlayerMapActions" /> instance referencing this action map.
         /// </summary>
         public PlayerMapActions @PlayerMap => new PlayerMapActions(this);
+
+        // MenuMap
+        private readonly InputActionMap m_MenuMap;
+        private List<IMenuMapActions> m_MenuMapActionsCallbackInterfaces = new List<IMenuMapActions>();
+        private readonly InputAction m_MenuMap_Pause;
+        private readonly InputAction m_MenuMap_AltReturn;
+        private readonly InputAction m_MenuMap_MenuUp;
+        private readonly InputAction m_MenuMap_MenuDown;
+        private readonly InputAction m_MenuMap_MenuRight;
+        private readonly InputAction m_MenuMap_MenuLeft;
+        /// <summary>
+        /// Provides access to input actions defined in input action map "MenuMap".
+        /// </summary>
+        public struct MenuMapActions
+        {
+            private @GameOffIA m_Wrapper;
+
+            /// <summary>
+            /// Construct a new instance of the input action map wrapper class.
+            /// </summary>
+            public MenuMapActions(@GameOffIA wrapper) { m_Wrapper = wrapper; }
+            /// <summary>
+            /// Provides access to the underlying input action "MenuMap/Pause".
+            /// </summary>
+            public InputAction @Pause => m_Wrapper.m_MenuMap_Pause;
+            /// <summary>
+            /// Provides access to the underlying input action "MenuMap/AltReturn".
+            /// </summary>
+            public InputAction @AltReturn => m_Wrapper.m_MenuMap_AltReturn;
+            /// <summary>
+            /// Provides access to the underlying input action "MenuMap/MenuUp".
+            /// </summary>
+            public InputAction @MenuUp => m_Wrapper.m_MenuMap_MenuUp;
+            /// <summary>
+            /// Provides access to the underlying input action "MenuMap/MenuDown".
+            /// </summary>
+            public InputAction @MenuDown => m_Wrapper.m_MenuMap_MenuDown;
+            /// <summary>
+            /// Provides access to the underlying input action "MenuMap/MenuRight".
+            /// </summary>
+            public InputAction @MenuRight => m_Wrapper.m_MenuMap_MenuRight;
+            /// <summary>
+            /// Provides access to the underlying input action "MenuMap/MenuLeft".
+            /// </summary>
+            public InputAction @MenuLeft => m_Wrapper.m_MenuMap_MenuLeft;
+            /// <summary>
+            /// Provides access to the underlying input action map instance.
+            /// </summary>
+            public InputActionMap Get() { return m_Wrapper.m_MenuMap; }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+            public void Enable() { Get().Enable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+            public void Disable() { Get().Disable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+            public bool enabled => Get().enabled;
+            /// <summary>
+            /// Implicitly converts an <see ref="MenuMapActions" /> to an <see ref="InputActionMap" /> instance.
+            /// </summary>
+            public static implicit operator InputActionMap(MenuMapActions set) { return set.Get(); }
+            /// <summary>
+            /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <param name="instance">Callback instance.</param>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+            /// </remarks>
+            /// <seealso cref="MenuMapActions" />
+            public void AddCallbacks(IMenuMapActions instance)
+            {
+                if (instance == null || m_Wrapper.m_MenuMapActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_MenuMapActionsCallbackInterfaces.Add(instance);
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @AltReturn.started += instance.OnAltReturn;
+                @AltReturn.performed += instance.OnAltReturn;
+                @AltReturn.canceled += instance.OnAltReturn;
+                @MenuUp.started += instance.OnMenuUp;
+                @MenuUp.performed += instance.OnMenuUp;
+                @MenuUp.canceled += instance.OnMenuUp;
+                @MenuDown.started += instance.OnMenuDown;
+                @MenuDown.performed += instance.OnMenuDown;
+                @MenuDown.canceled += instance.OnMenuDown;
+                @MenuRight.started += instance.OnMenuRight;
+                @MenuRight.performed += instance.OnMenuRight;
+                @MenuRight.canceled += instance.OnMenuRight;
+                @MenuLeft.started += instance.OnMenuLeft;
+                @MenuLeft.performed += instance.OnMenuLeft;
+                @MenuLeft.canceled += instance.OnMenuLeft;
+            }
+
+            /// <summary>
+            /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <remarks>
+            /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+            /// </remarks>
+            /// <seealso cref="MenuMapActions" />
+            private void UnregisterCallbacks(IMenuMapActions instance)
+            {
+                @Pause.started -= instance.OnPause;
+                @Pause.performed -= instance.OnPause;
+                @Pause.canceled -= instance.OnPause;
+                @AltReturn.started -= instance.OnAltReturn;
+                @AltReturn.performed -= instance.OnAltReturn;
+                @AltReturn.canceled -= instance.OnAltReturn;
+                @MenuUp.started -= instance.OnMenuUp;
+                @MenuUp.performed -= instance.OnMenuUp;
+                @MenuUp.canceled -= instance.OnMenuUp;
+                @MenuDown.started -= instance.OnMenuDown;
+                @MenuDown.performed -= instance.OnMenuDown;
+                @MenuDown.canceled -= instance.OnMenuDown;
+                @MenuRight.started -= instance.OnMenuRight;
+                @MenuRight.performed -= instance.OnMenuRight;
+                @MenuRight.canceled -= instance.OnMenuRight;
+                @MenuLeft.started -= instance.OnMenuLeft;
+                @MenuLeft.performed -= instance.OnMenuLeft;
+                @MenuLeft.canceled -= instance.OnMenuLeft;
+            }
+
+            /// <summary>
+            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="MenuMapActions.UnregisterCallbacks(IMenuMapActions)" />.
+            /// </summary>
+            /// <seealso cref="MenuMapActions.UnregisterCallbacks(IMenuMapActions)" />
+            public void RemoveCallbacks(IMenuMapActions instance)
+            {
+                if (m_Wrapper.m_MenuMapActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            /// <summary>
+            /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+            /// </summary>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+            /// </remarks>
+            /// <seealso cref="MenuMapActions.AddCallbacks(IMenuMapActions)" />
+            /// <seealso cref="MenuMapActions.RemoveCallbacks(IMenuMapActions)" />
+            /// <seealso cref="MenuMapActions.UnregisterCallbacks(IMenuMapActions)" />
+            public void SetCallbacks(IMenuMapActions instance)
+            {
+                foreach (var item in m_Wrapper.m_MenuMapActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_MenuMapActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        /// <summary>
+        /// Provides a new <see cref="MenuMapActions" /> instance referencing this action map.
+        /// </summary>
+        public MenuMapActions @MenuMap => new MenuMapActions(this);
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerMap" which allows adding and removing callbacks.
         /// </summary>
@@ -664,6 +1117,56 @@ namespace GameOffJam.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnPause(InputAction.CallbackContext context);
+        }
+        /// <summary>
+        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "MenuMap" which allows adding and removing callbacks.
+        /// </summary>
+        /// <seealso cref="MenuMapActions.AddCallbacks(IMenuMapActions)" />
+        /// <seealso cref="MenuMapActions.RemoveCallbacks(IMenuMapActions)" />
+        public interface IMenuMapActions
+        {
+            /// <summary>
+            /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnPause(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "AltReturn" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnAltReturn(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "MenuUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnMenuUp(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "MenuDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnMenuDown(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "MenuRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnMenuRight(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "MenuLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnMenuLeft(InputAction.CallbackContext context);
         }
     }
 }
