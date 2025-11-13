@@ -58,7 +58,7 @@ namespace GameOffJam.Input
         private void Update()
         {
             moveInput = playerInputActions.PlayerMap.Move.ReadValue<Vector2>();
-            Debug.Log(interactInput);
+            //Debug.Log(interactInput);
 
 
 

@@ -13,6 +13,8 @@ namespace GameOffJam.Player
         PlayerInteractor _playerInteractor;
         PlayerMapRotater _playerMapRotater;
 
+        bool _isInputEnabled = false;
+
         private void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
@@ -24,10 +26,20 @@ namespace GameOffJam.Player
 
         private void Update()
         {
-            _playerMovement.GetMovementInput(_playerInput.MoveInput);
-            _playerInteractor.SetInteracting(_playerInput.InteractInput);
-            _playerMapRotater.GetRotateLeftInput(_playerInput.RotateLeftInput);
-            _playerMapRotater.GetRotateRightInput(_playerInput.RotateRightInput);
+            if (_isInputEnabled)
+            {
+                _playerMovement.GetMovementInput(_playerInput.MoveInput);
+                _playerInteractor.SetInteracting(_playerInput.InteractInput);
+                _playerMapRotater.GetRotateLeftInput(_playerInput.RotateLeftInput);
+                _playerMapRotater.GetRotateRightInput(_playerInput.RotateRightInput);
+            }
+
+            
+        }
+
+        public void ToggleInputActive()
+        { 
+            _isInputEnabled = !_isInputEnabled;
         }
     }
 }
